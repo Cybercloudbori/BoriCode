@@ -1,6 +1,6 @@
 resource day2storage 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: 'cybercloudstorageacct'
-  location: 'westus3'
+  location: 'eastus2'
   sku: {
     name: 'Standard_LRS'
   }
@@ -11,14 +11,14 @@ properties:{
 }
 resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
   name: 'toy-product-launch-plan-starter'
-  location: 'westus3'
+  location: 'eastus2'
   sku: {
     name: 'F1'
   }
   }
   resource appServiceApp 'Microsoft.Web/sites@2023-01-01' = {
     name: 'toy-product-web-app'
-    location: 'westus3'
+    location: 'eastus2'
     properties: {
       serverFarmId: appServicePlan.id
       httpsOnly: true
