@@ -9,7 +9,8 @@ def check_ip_overlap(ip_ranges):
     return False  # No overlap found
 
 # Example usage:
-ip_ranges = ["172.16.28.0/23", "172.16.0.0/20"]
+ip_ranges = ["172.16.0.0/25", "172.16.0.0/20"
+]
 if check_ip_overlap(ip_ranges):
     print("Overlap detected!")
 else:
