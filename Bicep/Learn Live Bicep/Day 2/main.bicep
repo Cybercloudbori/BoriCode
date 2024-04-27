@@ -1,6 +1,10 @@
+param location string = resourceGroup().location
+
+param storageacctname string = 'toylaunch${uniqueString(resourceGroup().id)}'
+
 resource day2storage 'Microsoft.Storage/storageAccounts@2023-01-01' = {
-  name: 'cybercloudstorageacct'
-  location: 'eastus2'
+  name: storageacctname
+  location: location
   sku: {
     name: 'Standard_LRS'
   }
@@ -11,14 +15,14 @@ properties:{
 }
 resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
   name: 'toy-product-launch-plan-starter'
-  location: 'eastus2'
+  location: location
   sku: {
     name: 'F1'
   }
   }
   resource appServiceApp 'Microsoft.Web/sites@2023-01-01' = {
     name: 'toy-product-web-app'
-    location: 'eastus2'
+    location: location
     properties: {
       serverFarmId: appServicePlan.id
       httpsOnly: true
