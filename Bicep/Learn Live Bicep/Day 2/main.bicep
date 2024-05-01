@@ -1,5 +1,5 @@
 param location string = resourceGroup().location
-param storageAccountName string = 'toylaunch$(uniqueString(resourceGroup().id)'
+param storageAccountName string = 'toystg'
 param appServiceAppName string = 'toylaunch$(uniqueString(resourceGroup().id)'
 
 @allowed([
@@ -26,7 +26,7 @@ resource stgacct 'Microsoft.Storage/storageAccounts@2023-01-01' = {
 }
 
 
-resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
+resource appServicePlan 'Microsoft.Web/serverfarms@2021-03-01' = {
   name: appServicePlanName
   location: location
   sku: {
@@ -34,7 +34,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
   }
 }
 
-resource appServiceApp 'Microsoft.Web/sites@2023-01-01' = {
+resource appServiceApp 'Microsoft.Web/sites@2021-03-01' = {
   name: appServiceAppName
   location: location
   properties: { 
