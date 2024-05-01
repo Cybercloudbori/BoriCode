@@ -1,6 +1,6 @@
 param location string = resourceGroup().location
-param storageAccountName string = 'toystg'
-param appServiceAppName string = 'toylaunch$(uniqueString(resourceGroup().id)'
+param storageAccountName string = 'toylaunch${uniqueString(resourceGroup().id)}'
+param appServiceAppName string = 'toylaunch${uniqueString(resourceGroup().id)}'
 
 @allowed([
   'QA'
