@@ -11,7 +11,6 @@ param envType string
 
 var appServicePlanName = 'toy-product-launch-plan'
 var stgskuname = envType == 'PROD' ? 'Standard_GRS' : 'Standard_LRS'
-var appServicePlanSkuName = envType == 'PROD' ? 'P1V3' : 'F1'
 
 resource stgacct 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
