@@ -4,7 +4,7 @@ param storageAccountName string = 'toylaunch${(uniqueString(resourceGroup().id))
 
 @allowed ([
   'PROD'
-  'QA'
+  'ST'
 ])
 
 param envType string
