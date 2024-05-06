@@ -19,7 +19,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   }
   kind: 'StorageV2'
 }
-module app 'appservice.bicep' = {
+module app 'module/appservice.bicep' = {
   name: 'app'
   params: {
     appServiceAppName: appServiceAppName
@@ -27,7 +27,7 @@ module app 'appservice.bicep' = {
     location: location
   }
 }
-module vnet 'vnet.bicep' = {
+module vnet 'module/vnet.bicep' = {
   name: 'vnet'
   params: {
     location: location
