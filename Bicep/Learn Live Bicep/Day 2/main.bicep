@@ -1,6 +1,7 @@
 
 param location string = resourceGroup().location
-param storageAccountName string = 'toylaunch${(uniqueString(resourceGroup().id))}'
+param storageAccountName string = 'boricua${(uniqueString(resourceGroup().id))}'
+param appServiceAppName string = 'boricua-app${uniqueString(resourceGroup().id)}'
 
 @allowed ([
   'PROD'
@@ -8,7 +9,7 @@ param storageAccountName string = 'toylaunch${(uniqueString(resourceGroup().id))
 ])
 
 param envType string
-
+var appServicePlanName = 'boricua-production-plan'
 var storageaccountskuname = (envType == 'PROD') ? 'Standard_LRS' : 'Standard_GRS'
 
 
@@ -21,4 +22,13 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   kind: 'StorageV2'
 }
 
+resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
+  name: appServicePlanName
+  location: location 
+}
+
+resource appServiceApp 'Microsoft.Web/sites@2023-01-01' = {
+  name: appServiceAppName
+  location: location
+  }
 
