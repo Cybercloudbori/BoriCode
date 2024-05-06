@@ -2,6 +2,7 @@
 param location string = resourceGroup().location
 param storageAccountName string = 'boricua${(uniqueString(resourceGroup().id))}'
 param appServiceAppName string = 'boricua-app${uniqueString(resourceGroup().id)}'
+param vNetworkName string = 'boricua-vnet${uniqueString(resourceGroup().id)}'
 
 @allowed ([
   'PROD'
@@ -38,5 +39,27 @@ properties: {
   serverFarmId: appServicePlan.id
 }  
 }
+
+resource vNetwork 'Microsoft.Network/virtualNetworks@2023-09-01' = {
+  name: vNetworkName
+  location: location
+  properties: {
+    addressSpace: {
+addressPrefixes: [
+  '10.0.0.0/16']
+    }
+ subnets: [
+  {
+    name: 'subnet1'
+    properties: {
+      addressPrefix: '10.0.0.0/24'
+    }
+  }
+ ] 
+  }
+}
+
+output appServiceAppHostName string = appServiceApp.properties.defaultHostName
+output vnetGuid string = vNetwork.properties.resourceGuid
 
 
