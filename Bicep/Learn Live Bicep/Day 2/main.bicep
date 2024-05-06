@@ -24,11 +24,19 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
   name: appServicePlanName
-  location: location 
+  location: location
+  sku: {
+    name: 'F1'
+    tier: 'Free'
+  } 
 }
 
 resource appServiceApp 'Microsoft.Web/sites@2023-01-01' = {
   name: appServiceAppName
   location: location
-  }
+properties: {
+  serverFarmId: appServicePlan.id
+}  
+}
+
 
