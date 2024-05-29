@@ -1,6 +1,6 @@
 import ipaddress
 
-network = ipaddress.ip_network('172.16.0.0/20')
+network = ipaddress.ip_network('172.20.248.0/23')
 
 for ip in network:
     print(ip)
